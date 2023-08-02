@@ -29,8 +29,10 @@ class _ChartState extends State<Chart> {
 
   @override
   void initState(){
-    final FirebaseDatabase database = FirebaseDatabase.instance;
-    _dataref = database.reference().child("data");
+    //final FirebaseDatabase database = FirebaseDatabase.instance;
+    //_dataref = database.reference().child("data");
+    final database = FirebaseDatabase.instance.ref('Grupos');
+    _dataref = database.child('Grupo2');
     _data = <Registro>[];
     _chardata = <charts.Series<Registro, String>>[];
   }
@@ -56,7 +58,7 @@ class _ChartState extends State<Chart> {
               var fecha =
               childata["received_at"].toString();
               var temperatura =
-              childata["uplink_message"]["decoded_payload"]["temperatura"].toString();
+              childata["uplink_message"]["decoded_payload"]["temp"].toString();
               var humedad =
               childata["uplink_message"]["decoded_payload"]["humedad"].toString();
               registros.add(Registro(fecha,temperatura,humedad
