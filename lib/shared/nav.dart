@@ -7,17 +7,6 @@ class Nav extends StatefulWidget {
   @override
   _NavState createState() => _NavState();
 
-  Widget _llamarPagina(int paginaActual) {
-    switch (paginaActual) {
-      case 0:
-        return Data();
-      case 2:
-        return Chart();
-      default:
-        return HomePage();
-    }
-  }
-
 }
 
 class _NavState extends State<Nav> {
@@ -57,6 +46,10 @@ class _NavState extends State<Nav> {
 
   Widget _llamarPagina(int paginaActual) {
     switch (paginaActual) {
+      case 0:
+        return Data();
+      case 2:
+        return Chart();
       default:
         return HomePage();
     }
