@@ -17,6 +17,7 @@ class _DataState extends State<Data> {
   void initState() {
     //_dataref = FirebaseDatabase.instance.ref('data');
     _dataref = FirebaseDatabase.instance.ref('Grupos').child('Grupo0');
+
     super.initState();
   }
 
@@ -36,10 +37,16 @@ class _DataState extends State<Data> {
         query: _dataref,
         itemBuilder: (BuildContext context, DataSnapshot snapshot,
             Animation<double> animation, int index) {
-          var id = ((snapshot.value as dynamic)["end_device_ids"]["device_id"]).toString();
-          var humedad = ((snapshot.value as dynamic)["uplink_message"]["decoded_payload"]["humedad"]).toString();
-          var temperatura = ((snapshot.value as dynamic)["uplink_message"]["decoded_payload"]["temp"]).toString();
-          var fecha = ((snapshot.value as dynamic)["received_at"]).toString();
+
+
+          var id = ((snapshot.value as dynamic)["end_device_ids"]?["device_id"])?.toString();
+          id ??= "null";
+          var humedad = ((snapshot.value as dynamic)["uplink_message"]?["decoded_payload"]?["humedad"])?.toString();
+          humedad ??= "null";
+          var temperatura = ((snapshot.value as dynamic)["uplink_message"]?["decoded_payload"]?["temp"])?.toString();
+          temperatura ??= "null";
+          var fecha = ((snapshot.value as dynamic)["received_at"])?.toString();
+          fecha ??= "null";
           return Container(
             margin: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
             decoration: BoxDecoration(
@@ -62,7 +69,7 @@ class _DataState extends State<Data> {
             ),
           );
         }
-    ),
+      ),
     );
   }
 }

@@ -58,9 +58,11 @@ class _ChartState extends State<Chart> {
               var fecha =
               childata["received_at"].toString();
               var temperatura =
-              childata["uplink_message"]["decoded_payload"]["temp"].toString();
+              childata["uplink_message"]?["decoded_payload"]?["temp"]?.toString();
+              temperatura ??= "0";
               var humedad =
-              childata["uplink_message"]["decoded_payload"]["humedad"].toString();
+              childata["uplink_message"]?["decoded_payload"]?["humedad"]?.toString();
+              humedad ??= "0";
               registros.add(Registro(fecha,temperatura,humedad
               ));
             }
